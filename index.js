@@ -42,12 +42,16 @@ const admin= require('./routes/admin');
 // route middlewares
 app.use('/api/user', authroutes)
 app.use('/api/admin', validatetoken, admin)
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     res.json({
         estado: true,
         mensaje: 'funciona!'
     })
-});
+});*/
+
+const history=require('connect-history-api-fallback');
+app.use(history());
+app.use(express.static(__dirname + "/public"));
 
 // iniciar server
 const PORT = process.env.PORT || 3002;
